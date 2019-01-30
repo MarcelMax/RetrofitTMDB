@@ -1,12 +1,10 @@
 package com.example.max.retrofittmdb.view;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,13 +51,13 @@ public class MovieFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_movie,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_movie_list,container,false);
         unbinder = ButterKnife.bind(this,rootView);
 
         showBackButton();
+
         getPopularMovies();
         searchMovie();
-
 
         swipeLayoutSetup();
         return rootView;
@@ -104,7 +102,7 @@ public class MovieFragment extends Fragment {
                     getPopularMoviesSearch();
                     Log.v("***********","DONE ");
 
-                    //wenn die suche leer ist und auf suche geklickt wird, werden die popular movies angezeigt
+                    //if the searchfield is empty and search is clicked, the standart view with the popular movies is shown
                     if (isEmpty(editText)){
                         getPopularMovies();
                     }
@@ -155,11 +153,15 @@ public class MovieFragment extends Fragment {
 
     private void showOnRecyclerView() {
         movieAdapter = new MovieAdapter(getContext(),movies);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(movieAdapter);
-        movieAdapter.notifyDataSetChanged();
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(movieAdapter);
+            movieAdapter.notifyDataSetChanged();
+            if (movieAdapter.getItemCount() == 0){
+
+            }
+
     }
 
     private void swipeLayoutSetup(){

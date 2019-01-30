@@ -3,7 +3,6 @@ package com.example.max.retrofittmdb.adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +17,9 @@ import com.example.max.retrofittmdb.R;
 import com.example.max.retrofittmdb.model.Movie;
 import com.example.max.retrofittmdb.view.MainActivity;
 import com.example.max.retrofittmdb.view.MovieDetailFragment;
-import com.example.max.retrofittmdb.view.MovieFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +38,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.movie_list_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_movie_content, viewGroup, false);
         return new MovieViewHolder(view);
     }
 
@@ -91,8 +88,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
             MainActivity mainActivity = (MainActivity) mContext;
             FragmentManager manager = mainActivity.getSupportFragmentManager();
-            List<Fragment> fragments = manager.getFragments();
-            Log.v("*****FRAGMENTS","" + fragments.toString());
+           // List<Fragment> fragments = manager.getFragments();
+           // Log.v("*****FRAGMENTS","" + fragments.toString());
             FragmentTransaction transaction = manager.beginTransaction();
             movieDetailFragment.setArguments(bundle);
             transaction

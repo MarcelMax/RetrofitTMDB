@@ -64,8 +64,8 @@ public class MovieDetailFragment extends Fragment {
         }
     }
 
+    // gets the movies from the request
     public Movie getMovie() {
-
         if(movie == null){
             movie = new Movie();
             Bundle bundle = this.getArguments();
@@ -81,6 +81,7 @@ public class MovieDetailFragment extends Fragment {
         return movie;
     }
 
+    // fills the view with content
     private void fillWithContent(){
         Movie movie = getMovie();
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(movie.getTitle());
